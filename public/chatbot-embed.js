@@ -17,12 +17,72 @@
     </svg>
   `;
 
-  // Add click handler
+  // Create popup container
+  const popupContainer = document.createElement('div');
+  popupContainer.id = 'chat-popup-container';
+  popupContainer.style.cssText = `
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+    z-index: 9998;
+    overflow: hidden;
+  `;
+
+  // Create iframe
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://electroslab-chatbot.vercel.app';
+  iframe.style.cssText = `
+    width: 100%;
+    height: 100%;
+    border: none;
+  `;
+
+  // Add close button
+  const closeButton = document.createElement('button');
+  closeButton.innerHTML = `
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  `;
+  closeButton.style.cssText = `
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  `;
+
+  // Add click handler for the chat button
   chatButton.onclick = function() {
-    window.open('https://electroslab-chatbot.vercel.app', '_blank', 'width=400,height=600');
+    popupContainer.style.display = 'block';
+    chatButton.style.display = 'none';
   };
 
-  // Add the button to the container
+  // Add click handler for the close button
+  closeButton.onclick = function() {
+    popupContainer.style.display = 'none';
+    chatButton.style.display = 'flex';
+  };
+
+  // Assemble the popup
+  popupContainer.appendChild(closeButton);
+  popupContainer.appendChild(iframe);
+  container.appendChild(popupContainer);
   container.appendChild(chatButton);
 
   // Add styles
@@ -38,6 +98,12 @@
     }
     #electroslab-chatbot-container button:active {
       transform: scale(0.95);
+    }
+    #chat-popup-container {
+      transition: all 0.3s ease-in-out;
+    }
+    #chat-popup-container iframe {
+      border-radius: 12px;
     }
   `;
   document.head.appendChild(styles);
