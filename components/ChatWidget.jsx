@@ -105,15 +105,15 @@ const ChatWidget = () => {
   };
 
   const socialLinks = [
-    { name: 'Instagram', icon: '📸', url: 'https://instagram.com/electroslab' },
-    { name: 'Facebook', icon: '👥', url: 'https://facebook.com/electroslab' },
-    { name: 'TikTok', icon: '🎵', url: 'https://tiktok.com/@electroslab' }
+    { name: 'Instagram', icon: '📸', url: 'https://instagram.com/your-company' },
+    { name: 'Facebook', icon: '👥', url: 'https://facebook.com/your-company' },
+    { name: 'TikTok', icon: '🎵', url: 'https://tiktok.com/@your-company' }
   ];
 
   const departmentContacts = [
-    { name: 'Sales', icon: '💼', whatsapp: '+1234567890' },
-    { name: 'Maintenance', icon: '🔧', whatsapp: '+1234567891' },
-    { name: 'Support', icon: '🛟', whatsapp: '+1234567892' }
+    { name: 'Sales', icon: '💼', whatsapp: 'YOUR_SALES_WHATSAPP' },
+    { name: 'Support', icon: '🛟', whatsapp: 'YOUR_SUPPORT_WHATSAPP' },
+    { name: 'Technical', icon: '🔧', whatsapp: 'YOUR_TECHNICAL_WHATSAPP' }
   ];
 
   const handleWhatsAppClick = (number) => {
