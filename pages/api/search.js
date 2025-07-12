@@ -47,7 +47,7 @@ export default async function handler(req, res) {
   const priceRange = extractPriceRange(query);
 
   try {
-    const response = await fetch(`https://electroslab.com/search?q=${encodeURIComponent(query)}`);
+    const response = await fetch(`electroslab.myshopify.com/search?q=${encodeURIComponent(query)}`);
     if (!response.ok) {
       throw new Error('Failed to fetch search results');
     }
@@ -171,7 +171,7 @@ export default async function handler(req, res) {
         // If no description found in the product card, try to get it from the product page
         if (!description && link) {
           try {
-            const productPageResponse = await fetch(link.startsWith('http') ? link : `https://electroslab.com${link}`);
+            const productPageResponse = await fetch(link.startsWith('http') ? link : `electroslab.myshopify.com${link}`);
             if (productPageResponse.ok) {
               const productHtml = await productPageResponse.text();
               const $product = cheerio.load(productHtml);
@@ -237,9 +237,9 @@ export default async function handler(req, res) {
             } else if (cleanImage.startsWith('//')) {
               imageUrl = `https:${cleanImage}`;
             } else if (cleanImage.startsWith('/')) {
-              imageUrl = `https://electroslab.com${cleanImage}`;
+              imageUrl = `electroslab.myshopify.com${cleanImage}`;
             } else {
-              imageUrl = `https://electroslab.com/${cleanImage}`;
+              imageUrl = `electroslab.myshopify.com/${cleanImage}`;
             }
           }
 
@@ -255,7 +255,8 @@ export default async function handler(req, res) {
           let productLink = link;
           if (!productLink.startsWith('http')) {
             // If the link is relative, make it absolute
-            productLink = `https://electroslab.com${productLink.startsWith('/') ? '' : '/'}${productLink}`;
+            productLink = `electroslab.myshopify.com
+            ${productLink.startsWith('/') ? '' : '/'}${productLink}`;
           }
 
           // Remove any query parameters, fragments, or tracking parameters that might affect the product page
