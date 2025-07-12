@@ -44,7 +44,7 @@ function extractPriceRange(message) {
 // Function to perform direct product search
 async function performProductSearch(query) {
   try {
-    const response = await fetch(`https://electroslab.com/search?q=${encodeURIComponent(query)}`);
+    const response = await fetch(`electroslab.myshopify.com/search?q=${encodeURIComponent(query)}`);
     if (!response.ok) {
       throw new Error('Failed to fetch search results');
     }
@@ -151,9 +151,9 @@ async function performProductSearch(query) {
             } else if (cleanImage.startsWith('//')) {
               imageUrl = `https:${cleanImage}`;
             } else if (cleanImage.startsWith('/')) {
-              imageUrl = `https://electroslab.com${cleanImage}`;
+              imageUrl = `electroslab.myshopify.com${cleanImage}`;
             } else {
-              imageUrl = `https://electroslab.com/${cleanImage}`;
+              imageUrl = electroslab.myshopify.com/${cleanImage}`;
             }
           }
 
